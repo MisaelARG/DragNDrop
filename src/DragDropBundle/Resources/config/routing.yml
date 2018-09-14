@@ -1,0 +1,3 @@
+drag_drop_homepage:
+    path:     /
+    defaults: { _controller: DragDropBundle:Default:index }

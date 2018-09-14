@@ -1,0 +1,7 @@
+drag_drop:
+    resource: "@DragDropBundle/Resources/config/routing.yml"
+    prefix:   /prueba
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

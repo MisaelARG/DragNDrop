@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery example: drag and drop</title>
+        <style>
+            body {
+                font-size: 32px;
+            }
+
+            #dropzone1 {
+                top: 150px;
+                width: 200px;
+                height: 200px;
+                background: cyan;
+                border: solid 1px;
+            }
+            #dropzone2 {
+                top: 150px;
+                width: 200px;
+                height: 200px;
+                background: cyan;
+                border: solid 1px;
+            }
+            #dropzone3 {
+                top: 150px;
+                width: 200px;
+                height: 200px;
+                background: cyan;
+                border: solid 1px;
+            }
+
+            .nav {
+                list-style-type: none;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
+            .separate{
+                display: inline-block;
+                font-size: 20px;
+                padding: 20px;
+            }
+            .mr{
+                margin: 20px 20px  20px 20px ;
+            }
+        </style>
+        <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
+        <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}"/>
+    </head>
+    <body>
+        <h1>Drag and Drop</h1>
+
+        <img id="winston1" src="{{asset('img/m1.png')}}" data-val="1" class="mr"  >
+        <img id="winston2" src="{{asset('img/m2.png')}}" data-val="2" class="mr" >
+        <img id="winston3" src="{{asset('img/m3.png')}}" data-val="3" class="mr" >
+        <hr>
+        <br>
+        <div class="nav">
+            <div id="dropzone1" class="separate" >Arbol</div>
+            <div id="dropzone2" class="separate" >Computadora</div>
+            <div id="dropzone3" class="separate" >Estrella</div>
+        </div>
+
+        <script src="{{asset('js/js.js')}}"></script>
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+        <!-- Also include jQueryUI -->
+        <script type="text/javascript" src="{{asset('js/jquery-ui.js')}}"></script>
+        <script>
+            var target1 = $("#winston1");
+            $("#winston1").draggable({disabled: false});
+            var target2 = $("#winston2");
+            $("#winston2").draggable({disabled: false});
+            var target3 = $("#winston3");
+            $("#winston3").draggable({disabled: false});
+
+            var aciertos = 0;
+            var number = 0;
+
+            $("#dropzone1").droppable({
+                drop: function (event, ui) {
+                    $("#" + ui.draggable.attr('id')).draggable({disabled: true});
+                    if (ui.draggable.attr('data-val') == 1) {
+                        console.log('Correcto');
+                        $(this).css('background', 'green');
+                        aciertos = aciertos + 1;
+                        if (aciertos === 3) {
+                            console.log("GANASTE");
+                        }
+                    } else {
+                        console.log('Incorrecto');
+                        $(this).css('background', 'red');
+                    }
+
+                },
+                over: function (event, ui) {
+                },
+                out: function (event, ui) {
+
+                }
+            });
+            $("#dropzone2").droppable({
+                drop: function (event, ui) {
+                    $("#" + ui.draggable.attr('id')).draggable({disabled: true});
+
+                    if (ui.draggable.attr('data-val') == 2) {
+                        console.log('Correcto');
+                        $(this).css('background', 'green');
+                        aciertos = aciertos + 1;
+                        if (aciertos === 3) {
+                            console.log(aciertos);
+                            alert("GANASTE");
+                        }
+                    } else {
+                        $(this).css('background', 'red');
+                        console.log('Incorrecto');
+                    }
+                },
+                over: function (event, ui) {
+                },
+                out: function (event, ui) {
+
+                }
+            });
+            $("#dropzone3").droppable({
+                drop: function (event, ui) {
+                    $("#" + ui.draggable.attr('id')).draggable({disabled: true});
+                    if (ui.draggable.attr('data-val') == 3) {
+                        console.log('Correcto');
+                        $(this).css('background', 'green');
+                        aciertos = aciertos + 1;
+                        if (aciertos === 3) {
+                            alert("GANASTE");
+                            console.log(aciertos);
+                        }
+                    } else {
+                        console.log('Incorrecto');
+                        $(this).css('background', 'red');
+                    }
+                },
+                over: function (event, ui) {
+                },
+                out: function (event, ui) {
+
+                }
+            });
+        </script>
+
+    </body>
+</html>
